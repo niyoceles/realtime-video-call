@@ -1,0 +1,19 @@
+{
+  "name": "realtimeapp",
+  "version": "1.0.0",
+  "description": "Real time chat application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "realtime-chat"
+  },
+  "author": "Celestin Niyonsaba",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.0"
+  }
+}
