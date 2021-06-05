@@ -4,8 +4,8 @@ const app = express();
 
 //Starts the server
 
-let server = app.listen(3030,'localhost', function () {
-  console.log("Server running... port %d in %s mode", server.address().port, server.address().address);
+let server = app.listen(3030, function () {
+  console.log("Server is running");
 });
 
 app.use(express.static("public"));
