@@ -31,7 +31,7 @@ joinButton.addEventListener("click", function () {
 
 socket.on("created", function () {
   creator = true;
-
+  console.log('CREATED!!!!!!!!!')
   navigator.mediaDevices
     .getUserMedia({
       audio: true,
@@ -39,6 +39,7 @@ socket.on("created", function () {
     })
     .then(function (stream) {
       /* use the stream */
+      console.log('CREATED!!!!!!!!!STREAM', )
       userStream = stream;
       divVideoChatLobby.style = "display:none";
       userVideo.srcObject = stream;
@@ -56,7 +57,7 @@ socket.on("created", function () {
 
 socket.on("joined", function () {
   creator = false;
-
+console.log('JOINED!!!!!!!!!')
   navigator.mediaDevices
     .getUserMedia({
       audio: true,
@@ -64,6 +65,7 @@ socket.on("joined", function () {
     })
     .then(function (stream) {
       /* use the stream */
+      console.log('JOINED!!!!!!!!!STREAM')
       userStream = stream;
       divVideoChatLobby.style = "display:none";
       userVideo.srcObject = stream;
