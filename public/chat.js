@@ -85,7 +85,8 @@ socket.on("full", function () {
 });
 
 // Triggered when a peer has joined the room and ready to communicate.
-
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 socket.on("ready", function () {
   if (creator) {
     rtcPeerConnection = new RTCPeerConnection(iceServers);
