@@ -1,10 +1,19 @@
-let socket = io.connect("https://www.videocall.niyonsaba.com");
+let socket = io.connect("http://localhost:3030");
 let divVideoChatLobby = document.getElementById("video-chat-lobby");
 let divVideoChat = document.getElementById("video-chat-room");
 let joinButton = document.getElementById("join");
 let userVideo = document.getElementById("user-video");
 let peerVideo = document.getElementById("peer-video");
 let roomInput = document.getElementById("roomName");
+
+let divGroupButton = document.getElementById("btn-group");
+let muteButtonButton = document.getElementById("muteButton");
+let hideCameraButton = document.getElementById("hideCamera");
+let leaveRoomButton = document.getElementById("leaveRoom");
+
+let muteFlag =false;
+let hideCameraFlag = false;
+
 let roomName;
 let creator = false;
 let rtcPeerConnection;
@@ -27,6 +36,30 @@ joinButton.addEventListener("click", function () {
   }
 });
 
+
+muteButtonButton.addEventListener("click", function () {
+  muteFlag = !muteFlag;
+  if(muteFlag){
+    userStream.getTracks()[0].enabled = false;
+    muteButtonButton.textContent = 'Unmute';
+  }else{
+    userStream.getTracks()[0].enabled = true;
+    muteButtonButton.textContent = 'Mute';
+  }
+});
+
+
+hideCameraButton.addEventListener("click", function () {
+ hideCameraFlag = !hideCameraFlag;
+ if(hideCameraFlag){
+  userStream.getTracks()[1].enabled = false;
+   hideCameraButton.textContent = 'Show Camera';
+ }else{
+  userStream.getTracks()[1].enabled = true;
+  hideCameraButton.textContent = 'Hide camera';
+ }
+});
+
 // Triggered when a room is succesfully created.
 
 socket.on("created", function () {
@@ -35,13 +68,14 @@ socket.on("created", function () {
   navigator.mediaDevices
     .getUserMedia({
       audio: true,
-      video: { width: 1280, height: 720 },
+      video: { width: 500, height: 500 },
     })
     .then(function (stream) {
       /* use the stream */
       console.log('CREATED!!!!!!!!!STREAM', )
       userStream = stream;
       divVideoChatLobby.style = "display:none";
+      divGroupButton.style= "display:flex";
       userVideo.srcObject = stream;
       userVideo.onloadedmetadata = function (e) {
         userVideo.play();
@@ -61,13 +95,14 @@ console.log('JOINED!!!!!!!!!')
   navigator.mediaDevices
     .getUserMedia({
       audio: true,
-      video: { width: 1280, height: 720 },
+      video: { width: 500, height: 500 },
     })
     .then(function (stream) {
       /* use the stream */
       console.log('JOINED!!!!!!!!!STREAM')
       userStream = stream;
       divVideoChatLobby.style = "display:none";
+      divGroupButton.style = "display:flex";
       userVideo.srcObject = stream;
       userVideo.onloadedmetadata = function (e) {
         userVideo.play();
@@ -161,3 +196,43 @@ function OnTrackFunction(event) {
     peerVideo.play();
   };
 }
+
+
+
+leaveRoomButton.addEventListener("click", function () {
+  socket.emit("leave", roomName);
+  divVideoChatLobby.style = "display:block";
+  divGroupButton.style = "display:none";
+
+  if(userStream.srcObject){
+    userStream.srcObject.getTracks()[0].stop();
+    userStream.srcObject.getTracks()[1].stop();
+
+    // userStream.srcObject.getTracks().forEach((track) => track.stop()); // similar to the top one
+  }
+  if(peerVideo.srcObject){
+    peerVideo.srcObject.getTracks()[0].stop();
+    peerVideo.srcObject.getTracks()[1].stop();
+  }
+
+  if(rtcPeerConnection){
+    rtcPeerConnection.ontrack = null;
+    rtcPeerConnection.onicecandidate = null;
+    rtcPeerConnection.close();
+    rtcPeerConnection = null;
+  }
+ });
+
+ socket.on("leave", function(){
+  if(rtcPeerConnection){
+    rtcPeerConnection.ontrack = null;
+    rtcPeerConnection.onicecandidate = null;
+    rtcPeerConnection.close();
+    rtcPeerConnection = null;
+  }  
+  
+  if(peerVideo.srcObject){
+    peerVideo.srcObject.getTracks()[0].stop();
+    peerVideo.srcObject.getTracks()[1].stop();
+  }
+ })
