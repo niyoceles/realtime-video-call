@@ -1,4 +1,4 @@
-let socket = io.connect("http://139.59.92.86:3030");
+let socket = io.connect("https://www.videocall.niyonsaba.com");
 let divVideoChatLobby = document.getElementById("video-chat-lobby");
 let divVideoChat = document.getElementById("video-chat-room");
 let joinButton = document.getElementById("join");
