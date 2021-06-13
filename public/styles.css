@@ -8,6 +8,14 @@ h6 {
 	font-family: 'Montserrat', sans-serif;
 }
 
+body {
+	overflow: hidden;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
 .w3-row-padding img {
 	margin-bottom: 12px;
 }
@@ -15,8 +23,19 @@ h6 {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-image: url('1.png');
-	min-height: 100%;
+	background-image: url('2.png');
+	height: 100%;
+}
+
+.bg-text {
+	top: 60%;
+	color: white;
+	position: absolute;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	padding: 40px;
+	margin-left: 30px;
 }
 
 #chat-window {
