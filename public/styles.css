@@ -1,19 +1,41 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Montserrat', sans-serif;
+}
+
 body {
-	background-color: black;
-	font-family: 'Helvetica';
+	overflow: hidden;
 }
 
-h2 {
-	font-size: 18px;
-	padding: 10px 20px;
-	color: #ffffff;
+::-webkit-scrollbar {
+	display: none;
 }
 
-#chat-app {
+.w3-row-padding img {
+	margin-bottom: 12px;
+}
+#bgimg {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url('2.png');
+	height: 100%;
+}
+
+.bg-text {
+	top: 60%;
+	color: white;
+	position: absolute;
+	justify-content: center;
+	align-content: center;
 	text-align: center;
-	max-width: 600px;
-	background-color: #141414;
-	margin: 30px auto;
+	padding: 40px;
+	margin-left: 30px;
 }
 
 #chat-window {
@@ -45,21 +67,45 @@ label {
 	padding: 10px 20px;
 }
 
-input {
-	padding: 20px;
-	box-sizing: border-box;
-	background: #eee;
-	display: block;
-	width: 100%;
-	background: rgb(255, 253, 253);
-	font-family: Nunito;
-	font-size: 16px;
+.btn-group {
+	display: flex;
+	justify-content: center;
 }
 
-button {
-	background: #141414;
-	color: #fff;
-	font-size: 18px;
-	padding: 12px 0;
-	width: 100%;
+#video-chat-room {
+	display: flex;
+	justify-content: center;
+	background-color: #202124;
+	border: 1px solid white;
+}
+
+#user-video {
+	padding: 20px;
+}
+
+#peer-video {
+	padding: 20px;
+}
+
+.btn-group button {
+	background-color: #3c4043; /* Green background */
+	border: 1px solid #3c4043; /* Green border */
+	color: white; /* White text */
+	padding: 10px 24px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	float: left; /* Float the buttons side by side */
+	border-radius: 15%;
+	margin: 5px;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+	content: '';
+	clear: both;
+	display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+	background-color: #000000;
 }
