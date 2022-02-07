@@ -24,8 +24,15 @@ let userStream;
 // Contains the stun server URL we will be using.
 let iceServers = {
 	iceServers: [
-		{ urls: 'stun:stun.services.mozilla.com' },
-		{ urls: 'stun:stun.l.google.com:19302' },
+// 		{ urls: 'stun:stun.services.mozilla.com' },
+// 		{ urls: 'stun:stun.l.google.com:19302' },
+	{
+            urls: 'turn:numb.viagenie.ca:3489',
+            credential: 'password_here',
+            username: 'username_here'
+        },
+        {urls: "stun:stun.services.mozilla.com"},
+        {urls: "stun:stun1.l.google.com:19302"},
 	],
 };
 
