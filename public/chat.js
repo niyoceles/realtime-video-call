@@ -27,9 +27,9 @@ let iceServers = {
 // 		{ urls: 'stun:stun.services.mozilla.com' },
 // 		{ urls: 'stun:stun.l.google.com:19302' },
 		{
-            urls: 'turn:numb.viagenie.ca:3489',
-            credential: 'password_here',
-            username: 'username_here'
+            urls: 'turn:turn.niyonsaba.com:5349',
+            credential: 'somepassword',
+            username: 'guest'
         },
         {urls: "stun:stun.services.mozilla.com"},
         {urls: "stun:stun1.l.google.com:19302"},
